@@ -2,7 +2,7 @@
  * Created by Indrap on 29/11/2017.
  */
 import React from 'react';
-import {Table, Label, Button, Dropdown} from 'semantic-ui-react'
+import {Table, Button, Dropdown} from 'semantic-ui-react'
 import { statusOptions, priorityOptions } from "../utils/todoOptions";
 
 

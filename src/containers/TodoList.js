@@ -8,17 +8,16 @@ import TodoInput  from '../components/TodoInput';
 import TodoFilter from "../components/TodoFilter";
 import { saveTodo, deleteTodo, addTodo, filterTodo } from '../actions/todoAction';
 import { Table } from 'semantic-ui-react'
-import { todoReducer } from '../reducers/todoReducer'
 
 
 class TodoList extends React.Component {
 
     viewFilteredTodo = (todos, filter) => {
         let displayedTodo = todos.filter((todo) => {
-            return ((todo.status == filter.statusFilter) || ("" == filter.statusFilter))
+            return ((todo.status === filter.statusFilter) || ("" === filter.statusFilter))
         });
         displayedTodo = displayedTodo.filter((todo) => {
-            return ((todo.priority == filter.priorityFilter) || ("" == filter.priorityFilter))
+            return ((todo.priority === filter.priorityFilter) || ("" === filter.priorityFilter))
         });
 
         return displayedTodo.map((todo)=>(

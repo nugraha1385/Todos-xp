@@ -4,10 +4,6 @@ import { statusOptions,priorityOptions } from "../utils/todoOptions";
 
 
 class TodoItem extends Component {
-
-    constructor(props){
-        super(props);
-    }
     
     state = {
         description : "",

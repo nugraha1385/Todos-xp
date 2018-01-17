@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Container, Divider, Dropdown, Grid, Header, Image, List, Menu, Segment } from 'semantic-ui-react'
+import { Container, Divider, Dropdown, Grid, Header, List, Menu, Segment } from 'semantic-ui-react'
 import TodoList from './containers/TodoList';
 
 const AppLayout = () => (

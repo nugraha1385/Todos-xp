@@ -19,7 +19,7 @@ const initialState = {
 
 const todoReducer = (state = initialState, action) => {
     let newState;
-    switch(v){  
+    switch(action.type){  
         case ADD_TODO_ACTION:      
             newState = {
                 ...state,
