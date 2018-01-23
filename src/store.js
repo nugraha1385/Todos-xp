@@ -4,10 +4,8 @@
 
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import todoReducer from './reducers/todoReducer'
-
+import thunk from "redux-thunk";
 export default createStore(
-    combineReducers({todoReducer}),
-     /* preloadedState, */
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware()
+    combineReducers({todoReducer}),[],
+    applyMiddleware(thunk)
 );

@@ -10,13 +10,17 @@ export const FILTER_TODO_ACTION = "FILTER_TODO_ACTION";
 
 
 export const addTodo = (description,status, priority) => {
-    return {
-        type: ADD_TODO_ACTION,
-        payload: {
-            description: description,
-            status:status,
-            priority:priority
-        }
+    return (dispatch) => {
+        setTimeout(()=>{
+            dispatch({
+                type: ADD_TODO_ACTION,
+                payload: {
+                    description: description,
+                    status:status,
+                    priority:priority
+                }
+            });            
+        },1000);
     }
 }
 
