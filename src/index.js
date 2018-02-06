@@ -6,7 +6,6 @@ import AppLayout from './AppLayout';
 import store from './store';
 import 'semantic-ui-css/semantic.css';
 
-
 render(
     <Provider store={store}>
         <AppLayout />

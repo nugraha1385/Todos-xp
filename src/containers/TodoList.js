@@ -6,11 +6,14 @@ import { connect } from 'react-redux';
 import TodoItem  from '../components/TodoItem';
 import TodoInput  from '../components/TodoInput';
 import TodoFilter from "../components/TodoFilter";
-import { saveTodo, deleteTodo, addTodo, filterTodo } from '../actions/todoAction';
+import { saveTodo, deleteTodo, addTodo, filterTodo, showTodo } from '../actions/todoAction';
 import { Table } from 'semantic-ui-react'
 
-
 class TodoList extends React.Component {
+
+    componentDidMount() {
+        this.props.showTodo()
+    }
 
     viewFilteredTodo = (todos, filter) => {
         let displayedTodo = todos.filter((todo) => {
@@ -20,11 +23,13 @@ class TodoList extends React.Component {
             return ((todo.priority === filter.priorityFilter) || ("" === filter.priorityFilter))
         });
 
-        return displayedTodo.map((todo)=>(
-            <TodoItem todo={todo} key={todo.id} 
-                clickSaveButton={this.props.handleSave}
-                clickDeleteButton={() => this.props.handleDelete(todo.id)} />
-        ));  
+        if ( displayedTodo.length > 0){
+            return displayedTodo.map((todo)=>(
+                <TodoItem todo={todo} key={todo.id}
+                          clickSaveButton={this.props.handleSave}
+                          clickDeleteButton={() => this.props.handleDelete(todo.id)} />
+            ));
+        }
     }
 
     render(){
@@ -63,9 +68,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleSave: (id,status,priority) => {
+        handleSave: (id,description,status,priority) => {
             console.log("handle save on component for:"+id);
-            dispatch(saveTodo(id,status,priority));
+            dispatch(saveTodo(id,description,status,priority));
         },
         handleDelete: (id) => {
             console.log("handle delete on component for:"+id);
@@ -76,7 +81,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleChangeFilter: (statusFilter, priorityFilter) => {
             dispatch(filterTodo(statusFilter, priorityFilter));
-        }
+        },
+        showTodo: () => {
+            dispatch(showTodo());
+        }        
     };
 }
 

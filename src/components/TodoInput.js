@@ -3,6 +3,7 @@ import { Button,  Input, Dropdown} from 'semantic-ui-react';
 import { statusOptions,priorityOptions } from "../utils/todoOptions";
 
 
+
 class TodoItem extends Component {
     
     state = {
@@ -30,9 +31,11 @@ class TodoItem extends Component {
     render(){
         return(
             <div>    
-                <Button onClick={this.handleClickAddTodoItem}>Add</Button>        <Input type="text" name="description" placeholder="description" size="small" onChange={this.handleDescriptionChange} value={this.state.description} />
-                <Dropdown name="status" placeholder="Select status" selection options={statusOptions} onChange={this.handleStatusChange} value={this.state.status} />
-                <Dropdown name="priority" placeholder="Select priority" selection options={priorityOptions} onChange={this.handlePriorityChange} value={this.state.priority} />
+                <Button onClick={this.handleClickAddTodoItem}>Add</Button><Input type="text" name="description" placeholder="description" size="small" onChange={this.handleDescriptionChange} value={this.state.description} />
+                <Dropdown name="status" placeholder="Select status" selection options={statusOptions} className="small-dropdown"
+                          onChange={this.handleStatusChange} value={this.state.status} />
+                <Dropdown name="priority" placeholder="Select priority" selection options={priorityOptions} className="small-dropdown"
+                          onChange={this.handlePriorityChange} value={this.state.priority} />
             </div>
         );
     }
