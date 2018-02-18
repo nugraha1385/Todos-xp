@@ -7,7 +7,8 @@ import TodoItem  from '../components/TodoItem';
 import TodoInput  from '../components/TodoInput';
 import TodoFilter from "../components/TodoFilter";
 import { saveTodo, deleteTodo, addTodo, filterTodo, showTodo } from '../actions/todoAction';
-import { Table } from 'semantic-ui-react'
+import { Table, Image } from 'semantic-ui-react';
+
 
 class TodoList extends React.Component {
 
@@ -34,7 +35,8 @@ class TodoList extends React.Component {
 
     render(){
         return(
-            <div>               
+            <div>
+
                 <TodoInput clickAddTodoItem={this.props.handleAddTodoItem} />  
                 <Table celled>
                     <Table.Header>

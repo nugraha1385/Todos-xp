@@ -25,7 +25,7 @@ const initialState = {
 export const updateObjectTodo = (oldState, updatedState) => {
     return {
         ...oldState,
-        todo: [oldState.todos.slice()],
+        todos: [oldState.todos.slice()],
         todosFilter: {
             ...oldState.todosFilter
         },
@@ -61,11 +61,12 @@ const saveTodoResult = (state, action) => {
                 status: action.payload.status,
                 priority: action.payload.priority,
                 description: action.payload.description,
-                loading: false
+                isLoading: false
             }
         }
         return todo;
     });
+    console.log(newState);
     return newState;
 }
 

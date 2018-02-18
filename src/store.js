@@ -7,6 +7,7 @@ import todoReducer from './reducers/todoReducer'
 import thunk from "redux-thunk";
 
 export default createStore(
-    combineReducers({todoReducer}),[],
+    combineReducers({todoReducer}),
+    [],
     applyMiddleware(thunk)
 );

@@ -2,8 +2,9 @@
  * Created by Indrap on 29/11/2017.
  */
 import React from 'react';
-import {Input,Table, Button, Dropdown} from 'semantic-ui-react'
+import {Input,Table, Button, Dropdown, Image} from 'semantic-ui-react'
 import { statusOptions, priorityOptions } from "../utils/todoOptions";
+import loading from '../asset/loading-icon.gif';
 
 
 
@@ -16,8 +17,10 @@ class TodoItem extends React.Component {
             status: props.todo.status,
             priority: props.todo.priority,
             description: props.todo.description,
-            editDesc:false
+            editDesc:false,
+            isLoading:props.todo.isLoading
         };
+        console.log(this.state);
     }
 
     handleStatusChange = (event, data) => {
@@ -49,15 +52,33 @@ class TodoItem extends React.Component {
 
     render(){            
          
-        let saveButtonElement = (<Button type="button" 
-            onClick={() => {
-                this.props.clickSaveButton(this.props.todo.id,this.state.description, this.state.status, this.state.priority);          
-            }}> Save</Button>);
+        let buttonElement;
+        let descriptionComp;
 
-        let descriptionComp = (<span onClick={this.editThis}>{this.state.description}</span>);
+        {console.log(this.state.isLoading)}
+        if (this.state.isLoading){
+            buttonElement =
+                (<Image src={loading} size='tiny' />);
+        } else {
+            buttonElement=
+                (<div>
+                <Button type="button"
+                        onClick={() => {
+                            this.props.clickSaveButton(this.props.todo.id,this.state.description, this.state.status, this.state.priority);
+                            this.setState({isLoading:true});
+                        }}> Save</Button>
+                <Button type="button" onClick={this.props.clickDeleteButton}> Delete </Button>
+                </div>
+            );
+        }
+
         if(this.state.editDesc){
-            descriptionComp = (<Input type="text" name="description" placeholder="description" size="small" onBlur={this.stopEditThis}
+            descriptionComp =
+                (<Input type="text" name="description" placeholder="description" size="small" onBlur={this.stopEditThis}
                                onChange={this.handleDescriptionChange} value={this.state.description} />);
+        } else {
+            descriptionComp =
+                (<span onClick={this.editThis}>{this.state.description}</span>);
         }
 
         return(
@@ -73,8 +94,7 @@ class TodoItem extends React.Component {
                     <Dropdown options={priorityOptions} onChange={this.handlePriorityChange} value={this.state.priority} />
                 </Table.Cell>
                 <Table.Cell>
-                    {saveButtonElement}
-                    <Button type="button" onClick={this.props.clickDeleteButton}> Delete </Button>
+                    {buttonElement}
                 </Table.Cell>
             </Table.Row>
         );
