@@ -11,6 +11,7 @@ import loading from '../asset/loading-icon.gif';
 
 class TodoItem extends React.Component {
 
+    //test
     constructor(props){
         super(props);
         this.state = {
