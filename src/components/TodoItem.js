@@ -10,9 +10,8 @@ import loading from '../asset/loading-icon.gif';
 
 
 class TodoItem extends React.Component {
+    //develop branch
 
-    //test
-    //test 2
     constructor(props){
         super(props);
         this.state = {
